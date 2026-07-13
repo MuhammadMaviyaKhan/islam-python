@@ -1,0 +1,20 @@
+{% extends "base.html" %}{% block title %}Admin Dashboard{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <h2 class="fw-bold mb-4"><i class="bi bi-shield-lock text-gold me-2"></i>Admin Dashboard</h2>
+    <div class="row g-3 mb-4">
+        <div class="col-md-3"><div class="card card-islamic text-center p-3"><h3>{{ stats.users }}</h3><small>Users</small></div></div>
+        <div class="col-md-3"><div class="card card-islamic text-center p-3"><h3>{{ stats.duas }}</h3><small>Duas</small></div></div>
+        <div class="col-md-3"><div class="card card-islamic text-center p-3"><h3>{{ stats.ziyarats }}</h3><small>Ziyarat</small></div></div>
+        <div class="col-md-3"><div class="card card-islamic text-center p-3"><h3>{{ stats.articles }}</h3><small>Articles</small></div></div>
+    </div>
+    <div class="row g-3">
+        <div class="col-md-4"><a href="{{ url_for('admin.list_duas') }}" class="btn btn-gold w-100">Manage Duas</a></div>
+        <div class="col-md-4"><a href="{{ url_for('admin.list_articles') }}" class="btn btn-gold w-100">Manage Articles</a></div>
+        <div class="col-md-4"><a href="{{ url_for('admin.list_namaz') }}" class="btn btn-gold w-100">Manage Namaz</a></div>
+        <div class="col-md-4"><a href="{{ url_for('admin.list_categories') }}" class="btn btn-outline-gold w-100">Categories</a></div>
+        <div class="col-md-4"><a href="{{ url_for('admin.list_users') }}" class="btn btn-outline-gold w-100">Users</a></div>
+        <div class="col-md-4"><a href="{{ url_for('admin.backup') }}" class="btn btn-outline-gold w-100">Backup DB</a></div>
+    </div>
+</div>
+{% endblock %}

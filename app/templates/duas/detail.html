@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block title %}{{ dua.title }} - Shia Islam{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ url_for('duas.index') }}">Duas</a></li>
+            <li class="breadcrumb-item active">{{ dua.title }}</li>
+        </ol>
+    </nav>
+
+    <div class="card card-islamic mb-4">
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-start mb-3">
+                <h3 class="fw-bold">{{ dua.title }}</h3>
+                <div class="d-flex gap-2">
+                    <button class="btn btn-sm btn-outline-gold" onclick="copyToClipboard(document.getElementById('arabicText').innerText)"><i class="bi bi-copy"></i></button>
+                    {% if current_user.is_authenticated %}
+                    <button class="btn btn-sm btn-outline-gold" id="bookmarkBtn" data-type="dua" data-id="{{ dua.id }}">
+                        <i class="bi bi-bookmark"></i>
+                    </button>
+                    {% endif %}
+                    <button class="btn btn-sm btn-outline-gold" onclick="window.print()"><i class="bi bi-printer"></i></button>
+                </div>
+            </div>
+
+            <div class="text-center mb-4 p-4 bg-arabic">
+                <p class="arabic-text fs-3 mb-0" id="arabicText" dir="rtl">{{ dua.arabic }}</p>
+            </div>
+
+            {% if dua.transliteration %}
+            <div class="mb-4 p-3 bg-light rounded">
+                <h6 class="text-gold">Transliteration</h6>
+                <p class="mb-0 fst-italic">{{ dua.transliteration }}</p>
+            </div>
+            {% endif %}
+
+            {% if dua.urdu %}
+            <div class="mb-4">
+                <h6 class="text-gold">Urdu Translation</h6>
+                <p class="mb-0 urdu-text" dir="rtl">{{ dua.urdu }}</p>
+            </div>
+            {% endif %}
+
+            {% if dua.english %}
+            <div class="mb-4">
+                <h6 class="text-gold">English Translation</h6>
+                <p class="mb-0">{{ dua.english }}</p>
+            </div>
+            {% endif %}
+
+            {% if dua.reference %}
+            <div class="alert alert-gold">
+                <strong>Reference:</strong> {{ dua.reference }}
+            </div>
+            {% endif %}
+
+            {% if dua.audio_file %}
+            <div class="mb-3">
+                <audio controls class="w-100">
+                    <source src="{{ url_for('static', filename='audio/' + dua.audio_file) }}" type="audio/mpeg">
+                </audio>
+            </div>
+            {% endif %}
+
+            {% if dua.pdf_file %}
+            <a href="{{ url_for('static', filename='pdf/' + dua.pdf_file) }}" class="btn btn-gold" download>
+                <i class="bi bi-download me-2"></i>Download PDF
+            </a>
+            {% endif %}
+        </div>
+    </div>
+
+    {% if related %}
+    <h4 class="mb-3">Related Duas</h4>
+    <div class="row g-3">
+        {% for r in related %}
+        <div class="col-md-3">
+            <div class="card card-islamic h-100">
+                <div class="card-body text-center">
+                    <h6>{{ r.title }}</h6>
+                    <a href="{{ url_for('duas.detail', slug=r.slug) }}" class="btn btn-sm btn-gold">Read</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

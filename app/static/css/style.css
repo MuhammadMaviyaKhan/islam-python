@@ -1,0 +1,287 @@
+:root {
+    --islamic-green: #1b5e20;
+    --islamic-green-dark: #0d3b10;
+    --islamic-green-light: #2e7d32;
+    --gold: #c9a84c;
+    --gold-light: #e4c76b;
+    --gold-dark: #a8882e;
+    --cream: #faf3e0;
+    --dark-bg: #0a0a0f;
+    --dark-card: #14141e;
+    --dark-text: #e0e0e0;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    transition: var(--transition);
+    padding-top: 56px;
+}
+
+[data-bs-theme="dark"] body {
+    background-color: var(--dark-bg);
+    color: var(--dark-text);
+}
+
+.navbar {
+    background: linear-gradient(135deg, var(--islamic-green-dark), var(--islamic-green)) !important;
+    backdrop-filter: blur(10px);
+    transition: var(--transition);
+}
+
+.navbar-brand {
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.nav-link {
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.nav-link:hover {
+    color: var(--gold-light) !important;
+}
+
+.hero-section {
+    background: linear-gradient(135deg, var(--islamic-green-dark) 0%, #0a2a0e 50%, var(--islamic-green) 100%);
+    min-height: 60vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9a84c' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+}
+
+.hero-section .container {
+    position: relative;
+    z-index: 1;
+}
+
+.text-gold {
+    color: var(--gold) !important;
+}
+
+.bg-gold {
+    background-color: var(--gold) !important;
+    border-color: var(--gold) !important;
+}
+
+.btn-gold {
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    border: none;
+    color: #1a1a1a;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.btn-gold:hover {
+    background: linear-gradient(135deg, var(--gold-light), var(--gold));
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(201, 168, 76, 0.4);
+    color: #1a1a1a;
+}
+
+.btn-outline-gold {
+    border: 2px solid var(--gold);
+    color: var(--gold);
+    background: transparent;
+    transition: var(--transition);
+}
+
+.btn-outline-gold:hover {
+    background: var(--gold);
+    color: #1a1a1a;
+}
+
+.card-islamic {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    transition: var(--transition);
+    background: white;
+}
+
+[data-bs-theme="dark"] .card-islamic {
+    background: var(--dark-card);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.card-islamic:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+}
+
+.quick-link-card {
+    border: none;
+    border-radius: 12px;
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.quick-link-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(201, 168, 76, 0.2);
+    background: linear-gradient(135deg, var(--islamic-green), var(--islamic-green-dark));
+    color: white;
+}
+
+[data-bs-theme="dark"] .quick-link-card {
+    background: var(--dark-card);
+}
+
+.arabic-text {
+    font-family: 'Traditional Arabic', 'Scheherazade New', 'Amiri', serif;
+    line-height: 2;
+    direction: rtl;
+}
+
+.urdu-text {
+    font-family: 'Jameel Noori Nastaleeq', 'Noto Nastaliq Urdu', serif;
+    line-height: 2;
+    direction: rtl;
+}
+
+.bg-arabic {
+    background: linear-gradient(135deg, #f8f5f0, #f0ebe0);
+    border-radius: 12px;
+    border: 1px solid rgba(201, 168, 76, 0.2);
+}
+
+[data-bs-theme="dark"] .bg-arabic {
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+}
+
+.alert-gold {
+    background: linear-gradient(135deg, rgba(201, 168, 76, 0.1), rgba(201, 168, 76, 0.05));
+    border: 1px solid var(--gold);
+    color: var(--gold-dark);
+}
+
+[data-bs-theme="dark"] .alert-gold {
+    color: var(--gold-light);
+}
+
+.footer {
+    background: linear-gradient(135deg, var(--islamic-green-dark), #0a2a0e);
+    color: white;
+}
+
+.footer-link {
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.footer-link:hover {
+    color: var(--gold-light);
+    padding-left: 3px;
+}
+
+.bg-light {
+    transition: var(--transition);
+}
+
+[data-bs-theme="dark"] .bg-light {
+    background-color: #12121c !important;
+}
+
+.fw-bold {
+    font-weight: 700;
+}
+
+.progress-bar.bg-gold {
+    background: linear-gradient(90deg, var(--gold-dark), var(--gold-light)) !important;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 0.25rem rgba(201, 168, 76, 0.25);
+}
+
+.dropdown-menu {
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+}
+
+[data-bs-theme="dark"] .dropdown-menu {
+    background: var(--dark-card);
+    color: var(--dark-text);
+}
+
+[data-bs-theme="dark"] .dropdown-item {
+    color: var(--dark-text);
+}
+
+[data-bs-theme="dark"] .dropdown-item:hover {
+    background: var(--islamic-green-dark);
+    color: var(--gold-light);
+}
+
+[data-bs-theme="dark"] .table {
+    color: var(--dark-text);
+}
+
+[data-bs-theme="dark"] .table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: rgba(255,255,255,0.03);
+}
+
+[data-bs-theme="dark"] .list-group-item {
+    background: var(--dark-card);
+    color: var(--dark-text);
+    border-color: rgba(255,255,255,0.05);
+}
+
+[data-bs-theme="dark"] .breadcrumb-item,
+[data-bs-theme="dark"] .breadcrumb-item a {
+    color: var(--gold-light);
+}
+
+[data-bs-theme="dark"] .breadcrumb-item.active {
+    color: var(--dark-text);
+}
+
+.steps-content {
+    line-height: 1.8;
+}
+
+.steps-list li {
+    margin-bottom: 1rem;
+    padding: 0.5rem 1rem;
+    background: rgba(201, 168, 76, 0.05);
+    border-radius: 8px;
+    border-left: 3px solid var(--gold);
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        min-height: 40vh;
+    }
+    .hero-section h1 {
+        font-size: 1.8rem;
+    }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.card-islamic {
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+.card-islamic:nth-child(2) { animation-delay: 0.1s; }
+.card-islamic:nth-child(3) { animation-delay: 0.2s; }
+.card-islamic:nth-child(4) { animation-delay: 0.3s; }
+
+.list-group-item.active {
+    background: linear-gradient(135deg, var(--islamic-green), var(--islamic-green-dark));
+    border-color: var(--islamic-green);
+}

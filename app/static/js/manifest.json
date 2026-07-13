@@ -1,0 +1,13 @@
+{
+  "name": "Shia Islam",
+  "short_name": "ShiaIslam",
+  "description": "Comprehensive Shia Islamic resource with Duas, Ziyarat, Namaz guides, and more",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1b5e20",
+  "theme_color": "#1b5e20",
+  "icons": [
+    { "src": "/static/images/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/static/images/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

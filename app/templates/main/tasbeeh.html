@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Digital Tasbeeh - Shia Islam{% endblock %}
+{% block content %}
+<div class="container py-5 text-center">
+    <h2 class="fw-bold mb-4"><i class="bi bi-currency-exchange text-gold me-2"></i>Digital Tasbeeh</h2>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card card-islamic">
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label class="fw-bold">Select Dhikr</label>
+                        <select id="dhikrSelect" class="form-select mt-2">
+                            <option value="Subhanallah">Subhanallah (33x)</option>
+                            <option value="Alhamdulillah">Alhamdulillah (33x)</option>
+                            <option value="Allahu Akbar">Allahu Akbar (34x)</option>
+                            <option value="La ilaha illallah">La ilaha illallah</option>
+                            <option value="Astaghfirullah">Astaghfirullah</option>
+                            <option value="custom">Custom</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="fw-bold">Target Count</label>
+                        <input type="number" id="targetCount" class="form-control mt-2" value="33" min="1" max="99999">
+                    </div>
+                    <div class="display-1 fw-bold text-gold my-4" id="countDisplay">0</div>
+                    <div class="progress mb-3" style="height:20px">
+                        <div class="progress-bar bg-gold" id="progressBar" style="width:0%"></div>
+                    </div>
+                    <div class="d-flex gap-2 justify-content-center flex-wrap">
+                        <button class="btn btn-gold btn-lg px-5" id="countBtn">+1</button>
+                        <button class="btn btn-outline-gold btn-lg" id="resetBtn"><i class="bi bi-arrow-counterclockwise"></i></button>
+                        <button class="btn btn-outline-gold btn-lg" id="saveBtn"><i class="bi bi-save"></i></button>
+                    </div>
+                    {% if history %}
+                    <hr>
+                    <h5 class="mt-4">History</h5>
+                    <div class="list-group text-start">
+                        {% for h in history %}
+                        <div class="list-group-item d-flex justify-content-between">
+                            <span>{{ h.name }}</span>
+                            <span>{{ h.count }} / {{ h.target }}</span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

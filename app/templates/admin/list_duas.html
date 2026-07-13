@@ -1,0 +1,21 @@
+{% extends "base.html" %}{% block title %}Manage Duas{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold">Duas</h2>
+        <a href="{{ url_for('admin.create_dua') }}" class="btn btn-gold">Add New</a>
+    </div>
+    <table class="table table-striped">
+        <thead><tr><th>Title</th><th>Published</th><th>Views</th><th>Actions</th></tr></thead>
+        <tbody>{% for item in items %}<tr>
+            <td>{{ item.title }}</td>
+            <td>{% if item.is_published %}<span class="badge bg-success">Yes</span>{% else %}<span class="badge bg-secondary">No</span>{% endif %}</td>
+            <td>{{ item.view_count }}</td>
+            <td>
+                <a href="{{ url_for('admin.edit_dua', id=item.id) }}" class="btn btn-sm btn-gold">Edit</a>
+                <a href="{{ url_for('admin.delete_dua', id=item.id) }}" class="btn btn-sm btn-outline-danger" onclick="return confirm('Delete?')">Delete</a>
+            </td>
+        </tr>{% endfor %}</tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,224 @@
+{% extends "base.html" %}
+{% block title %}Shia Islam - Comprehensive Islamic Resource{% endblock %}
+{% block content %}
+
+<!-- Hero Section -->
+<section class="hero-section d-flex align-items-center">
+    <div class="container text-center text-white">
+        <h1 class="display-3 fw-bold mb-3 arabic-text" dir="rtl">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</h1>
+        <p class="lead mb-4">In the Name of Allah, the All-Beneficent, the All-Merciful</p>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form action="{{ url_for('main.search') }}" method="GET">
+                    <div class="input-group input-group-lg">
+                        <input class="form-control form-control-lg" type="search" name="q" placeholder="Search Duas, Ziyarat, Articles..." aria-label="Search">
+                        <button class="btn btn-gold" type="submit"><i class="bi bi-search me-2"></i>Search</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Daily Verse & Hadith -->
+<section class="py-5">
+    <div class="container">
+        <div class="row g-4">
+            {% if daily_verse %}
+            <div class="col-md-6">
+                <div class="card card-islamic h-100">
+                    <div class="card-body text-center">
+                        <h5 class="card-title text-gold mb-3"><i class="bi bi-book me-2"></i>Daily Quran Verse</h5>
+                        <p class="arabic-text fs-4 mb-3" dir="rtl">{{ daily_verse.arabic }}</p>
+                        <p class="mb-2">{{ daily_verse.translation }}</p>
+                        <p class="text-muted small mb-0">{{ daily_verse.urdu_translation }}</p>
+                        <small class="text-gold">{{ daily_verse.reference }}</small>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            {% if daily_hadith %}
+            <div class="col-md-6">
+                <div class="card card-islamic h-100">
+                    <div class="card-body text-center">
+                        <h5 class="card-title text-gold mb-3"><i class="bi bi-chat-quote me-2"></i>Daily Hadith</h5>
+                        {% if daily_hadith.arabic %}
+                        <p class="arabic-text fs-5 mb-3" dir="rtl">{{ daily_hadith.arabic }}</p>
+                        {% endif %}
+                        <p class="mb-2">{{ daily_hadith.english }}</p>
+                        {% if daily_hadith.urdu %}
+                        <p class="text-muted small mb-2">{{ daily_hadith.urdu }}</p>
+                        {% endif %}
+                        <small class="text-gold">{{ daily_hadith.source }} - {{ daily_hadith.reference }}</small>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<!-- Quick Links -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row g-3">
+            <div class="col-6 col-md-3">
+                <a href="{{ url_for('namaz.index') }}" class="text-decoration-none">
+                    <div class="card quick-link-card text-center p-3">
+                        <i class="bi bi-building fs-1 text-gold"></i>
+                        <span class="mt-2 fw-semibold">Namaz</span>
+                    </div>
+                </a>
+            </div>
+            <div class="col-6 col-md-3">
+                <a href="{{ url_for('duas.index') }}" class="text-decoration-none">
+                    <div class="card quick-link-card text-center p-3">
+                        <i class="bi bi-hand-raised fs-1 text-gold"></i>
+                        <span class="mt-2 fw-semibold">Duas</span>
+                    </div>
+                </a>
+            </div>
+            <div class="col-6 col-md-3">
+                <a href="{{ url_for('ziyarat.index') }}" class="text-decoration-none">
+                    <div class="card quick-link-card text-center p-3">
+                        <i class="bi bi-geo-alt fs-1 text-gold"></i>
+                        <span class="mt-2 fw-semibold">Ziyarat</span>
+                    </div>
+                </a>
+            </div>
+            <div class="col-6 col-md-3">
+                <a href="{{ url_for('quran.index') }}" class="text-decoration-none">
+                    <div class="card quick-link-card text-center p-3">
+                        <i class="bi bi-book fs-1 text-gold"></i>
+                        <span class="mt-2 fw-semibold">Quran</span>
+                    </div>
+                </a>
+            </div>
+            <div class="col-6 col-md-3">
+                <a href="{{ url_for('kalma.index') }}" class="text-decoration-none">
+                    <div class="card quick-link-card text-center p-3">
+                        <i class="bi bi-moon fs-1 text-gold"></i>
+                        <span class="mt-2 fw-semibold">Kalma</span>
+                    </div>
+                </a>
+            </div>
+            <div class="col-6 col-md-3">
+                <a href="{{ url_for('tasbeeh.index') }}" class="text-decoration-none">
+                    <div class="card quick-link-card text-center p-3">
+                        <i class="bi bi-currency-exchange fs-1 text-gold"></i>
+                        <span class="mt-2 fw-semibold">Tasbeeh</span>
+                    </div>
+                </a>
+            </div>
+            <div class="col-6 col-md-3">
+                <a href="{{ url_for('prayers.prayer_times') }}" class="text-decoration-none">
+                    <div class="card quick-link-card text-center p-3">
+                        <i class="bi bi-clock fs-1 text-gold"></i>
+                        <span class="mt-2 fw-semibold">Prayer Times</span>
+                    </div>
+                </a>
+            </div>
+            <div class="col-6 col-md-3">
+                <a href="{{ url_for('prayers.islamic_calendar') }}" class="text-decoration-none">
+                    <div class="card quick-link-card text-center p-3">
+                        <i class="bi bi-calendar-event fs-1 text-gold"></i>
+                        <span class="mt-2 fw-semibold">Calendar</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Duas -->
+{% if featured_duas %}
+<section class="py-5">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="fw-bold"><i class="bi bi-hand-raised text-gold me-2"></i>Featured Duas</h2>
+            <a href="{{ url_for('duas.index') }}" class="btn btn-outline-gold btn-sm">View All <i class="bi bi-arrow-right"></i></a>
+        </div>
+        <div class="row g-4">
+            {% for dua in featured_duas %}
+            <div class="col-md-3">
+                <div class="card card-islamic h-100">
+                    <div class="card-body text-center">
+                        <h6 class="arabic-text mb-2" dir="rtl">{{ dua.arabic[:50] }}...</h6>
+                        <h6 class="card-title">{{ dua.title }}</h6>
+                        <a href="{{ url_for('duas.detail', slug=dua.slug) }}" class="btn btn-sm btn-gold mt-2">Read</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Featured Ziyarat -->
+{% if featured_ziyarats %}
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="fw-bold"><i class="bi bi-geo-alt text-gold me-2"></i>Ziyarat</h2>
+            <a href="{{ url_for('ziyarat.index') }}" class="btn btn-outline-gold btn-sm">View All <i class="bi bi-arrow-right"></i></a>
+        </div>
+        <div class="row g-4">
+            {% for z in featured_ziyarats %}
+            <div class="col-md-4">
+                <div class="card card-islamic h-100">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">{{ z.title }}</h5>
+                        <p class="arabic-text small mb-3" dir="rtl">{{ z.arabic[:80] }}...</p>
+                        <a href="{{ url_for('ziyarat.detail', slug=z.slug) }}" class="btn btn-sm btn-gold">Read</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Featured Articles -->
+{% if featured_articles %}
+<section class="py-5">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="fw-bold"><i class="bi bi-newspaper text-gold me-2"></i>Latest Articles</h2>
+            <a href="{{ url_for('articles.index') }}" class="btn btn-outline-gold btn-sm">View All <i class="bi bi-arrow-right"></i></a>
+        </div>
+        <div class="row g-4">
+            {% for article in featured_articles %}
+            <div class="col-md-4">
+                <div class="card card-islamic h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ article.title }}</h5>
+                        <p class="card-text small text-muted">{{ article.summary[:150] }}...</p>
+                        <a href="{{ url_for('articles.detail', slug=article.slug) }}" class="btn btn-sm btn-gold">Read More</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Kalma Section -->
+{% if kalmas %}
+<section class="py-5 bg-dark text-white text-center">
+    <div class="container">
+        {% for kalma in kalmas %}
+        <div class="mb-4">
+            <h2 class="text-gold mb-3">Shia Kalma</h2>
+            <p class="arabic-text fs-3 mb-3" dir="rtl">{{ kalma.arabic }}</p>
+            <p class="lead mb-2">{{ kalma.english }}</p>
+            <p class="mb-0">{{ kalma.urdu }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "base.html" %}{% block title %}Pages{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <h4>Static Pages</h4>
+    <table class="table table-striped">
+        <thead><tr><th>Title</th><th>Slug</th><th>Published</th></tr></thead>
+        <tbody>{% for p in pages %}<tr>
+            <td>{{ p.title }}</td><td>{{ p.slug }}</td>
+            <td>{% if p.is_published %}<span class="badge bg-success">Yes</span>{% else %}<span class="badge bg-secondary">No</span>{% endif %}</td>
+        </tr>{% endfor %}</tbody>
+    </table>
+</div>
+{% endblock %}

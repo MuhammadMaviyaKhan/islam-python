@@ -1,0 +1,38 @@
+{% extends "base.html" %}{% block title %}Prayer Times - Shia Islam{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <h2 class="fw-bold mb-4"><i class="bi bi-clock text-gold me-2"></i>Prayer Times</h2>
+    <div class="card card-islamic mb-4">
+        <div class="card-body">
+            <form class="row g-3" method="GET">
+                <div class="col-md-4"><label>Latitude</label><input class="form-control" name="lat" value="{{ lat }}"></div>
+                <div class="col-md-4"><label>Longitude</label><input class="form-control" name="lng" value="{{ lng }}"></div>
+                <div class="col-md-4"><label>Method</label><select class="form-select" name="method">
+                    <option value="1">University of Islamic Sciences, Karachi</option>
+                    <option value="2">Islamic Society of North America</option>
+                    <option value="3">Muslim World League</option>
+                    <option value="4">Umm al-Qura, Makkah</option>
+                    <option value="5">Egyptian General Authority of Survey</option>
+                </select></div>
+                <div class="col-12"><button class="btn btn-gold" type="submit">Get Times</button></div>
+            </form>
+        </div>
+    </div>
+    {% if timings %}
+    <div class="card card-islamic">
+        <div class="card-body">
+            <table class="table table-striped mb-0">
+                <thead><tr><th>Prayer</th><th>Time</th></tr></thead>
+                <tbody>
+                    {% for name, time in timings.items() %}
+                    {% if name in ['Fajr', 'Sunrise', 'Dhuhr', 'Asr', 'Maghrib', 'Isha', 'Midnight'] %}
+                    <tr><td class="fw-bold">{{ name }}</td><td>{{ time }}</td></tr>
+                    {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

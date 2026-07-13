@@ -1,0 +1,15 @@
+{% extends "base.html" %}{% block title %}New Category{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <h4>New Category</h4>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        {{ form.name.label }}{{ form.name(class="form-control mb-2") }}
+        {{ form.slug.label }}{{ form.slug(class="form-control mb-2") }}
+        {{ form.content_type.label }}{{ form.content_type(class="form-select mb-2") }}
+        {{ form.description.label }}{{ form.description(class="form-control mb-2", rows=3) }}
+        {{ form.sort_order.label }}{{ form.sort_order(class="form-control mb-2") }}
+        {{ form.submit(class="btn btn-gold") }}
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "base.html" %}{% block title %}{{ article.title }} - Shia Islam{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <nav aria-label="breadcrumb"><ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ url_for('articles.index') }}">Articles</a></li>
+        <li class="breadcrumb-item active">{{ article.title }}</li>
+    </ol></nav>
+    <div class="card card-islamic">
+        <div class="card-body">
+            <h3 class="fw-bold mb-2">{{ article.title }}</h3>
+            <small class="text-muted">{{ article.created_at.strftime('%b %d, %Y') }} | {{ article.view_count }} views</small>
+            <hr>
+            <div class="article-content">{{ article.content|safe }}</div>
+        </div>
+    </div>
+</div>
+{% endblock %}

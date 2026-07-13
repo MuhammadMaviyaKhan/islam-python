@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block title %}Namaz - Shia Islam{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <h2 class="fw-bold mb-4"><i class="bi bi-building text-gold me-2"></i>Namaz (Prayer) Guides</h2>
+    <div class="row mb-5">
+        <div class="col-md-4 mb-3">
+            <a href="{{ url_for('namaz.wudu') }}" class="text-decoration-none">
+                <div class="card card-islamic text-center p-4 h-100">
+                    <i class="bi bi-droplet fs-1 text-gold mb-2"></i>
+                    <h5>Wudu (Ablution)</h5>
+                    <p class="small text-muted mb-0">Complete Shia method of Wudu</p>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-4 mb-3">
+            <a href="{{ url_for('namaz.ghusl') }}" class="text-decoration-none">
+                <div class="card card-islamic text-center p-4 h-100">
+                    <i class="bi bi-water fs-1 text-gold mb-2"></i>
+                    <h5>Ghusl (Bath)</h5>
+                    <p class="small text-muted mb-0">Complete guide for Ghusl</p>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-4 mb-3">
+            <a href="{{ url_for('namaz.tayammum') }}" class="text-decoration-none">
+                <div class="card card-islamic text-center p-4 h-100">
+                    <i class="bi bi-dust fs-1 text-gold mb-2"></i>
+                    <h5>Tayammum</h5>
+                    <p class="small text-muted mb-0">Dry ablution guide</p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <h3 class="fw-bold mb-3 text-gold">Daily Prayers</h3>
+    <div class="row g-3 mb-5">
+        {% for p in daily_prayers %}
+        <div class="col-md-4">
+            <div class="card card-islamic h-100">
+                <div class="card-body">
+                    <h5 class="card-title">{{ p.name }}</h5>
+                    <p class="small text-muted">Rakats: {{ p.rakats or 'N/A' }}</p>
+                    <p class="small">{{ p.purpose[:120] }}{% if p.purpose and p.purpose|length > 120 %}...{% endif %}</p>
+                    <a href="{{ url_for('namaz.detail', slug=p.slug) }}" class="btn btn-sm btn-gold">View Guide</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    {% if other_prayers %}
+    <h3 class="fw-bold mb-3 text-gold">Other Prayers</h3>
+    <div class="row g-3">
+        {% for p in other_prayers %}
+        <div class="col-md-4">
+            <div class="card card-islamic h-100">
+                <div class="card-body">
+                    <h5 class="card-title">{{ p.name }}</h5>
+                    <p class="small text-muted">Rakats: {{ p.rakats or 'N/A' }}</p>
+                    <a href="{{ url_for('namaz.detail', slug=p.slug) }}" class="btn btn-sm btn-gold">View Guide</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

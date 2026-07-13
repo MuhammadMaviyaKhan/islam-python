@@ -1,0 +1,27 @@
+{% extends "base.html" %}{% block title %}Surah {{ surah_num }} - Quran{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <nav aria-label="breadcrumb"><ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ url_for('quran.index') }}">Quran</a></li>
+        <li class="breadcrumb-item active">Surah {{ surah_num }}</li>
+    </ol></nav>
+    <h4 class="fw-bold mb-4">Surah {{ surah_num }}</h4>
+    <div class="card card-islamic">
+        <div class="card-body">
+            {% for v in verses %}
+            <div class="mb-4 p-3 {% if loop.index % 2 == 0 %}bg-arabic{% endif %} rounded">
+                <div class="d-flex justify-content-between">
+                    <small class="text-gold fw-bold">Verse {{ v.verse }}</small>
+                    <small class="text-muted">{{ v.reference }}</small>
+                </div>
+                <p class="arabic-text fs-4 mt-2 mb-2" dir="rtl">{{ v.arabic }}</p>
+                {% if v.translation %}<p class="mb-1">{{ v.translation }}</p>{% endif %}
+                {% if v.urdu_translation %}<p class="urdu-text small text-muted mb-0" dir="rtl">{{ v.urdu_translation }}</p>{% endif %}
+            </div>
+            {% else %}
+            <p>No verses available for this surah yet.</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

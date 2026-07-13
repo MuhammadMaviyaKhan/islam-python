@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block title %}Search: {{ query }}{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <h2 class="mb-4"><i class="bi bi-search text-gold me-2"></i>Search Results for "{{ query }}"</h2>
+    {% if not duas and not ziyarats and not articles and not kalmas %}
+        <div class="alert alert-info">No results found. Try a different search term.</div>
+    {% endif %}
+
+    {% if duas %}
+    <section class="mb-5">
+        <h4 class="text-gold mb-3"><i class="bi bi-hand-raised me-2"></i>Duas</h4>
+        <div class="row g-3">
+            {% for d in duas %}
+            <div class="col-md-6">
+                <div class="card card-islamic">
+                    <div class="card-body">
+                        <h6 class="card-title">{{ d.title }}</h6>
+                        <p class="arabic-text small mb-2" dir="rtl">{{ d.arabic[:100] }}...</p>
+                        <a href="{{ url_for('duas.detail', slug=d.slug) }}" class="btn btn-sm btn-gold">Read</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+
+    {% if ziyarats %}
+    <section class="mb-5">
+        <h4 class="text-gold mb-3"><i class="bi bi-geo-alt me-2"></i>Ziyarat</h4>
+        <div class="row g-3">
+            {% for z in ziyarats %}
+            <div class="col-md-6">
+                <div class="card card-islamic">
+                    <div class="card-body">
+                        <h6 class="card-title">{{ z.title }}</h6>
+                        <a href="{{ url_for('ziyarat.detail', slug=z.slug) }}" class="btn btn-sm btn-gold">Read</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+
+    {% if articles %}
+    <section class="mb-5">
+        <h4 class="text-gold mb-3"><i class="bi bi-newspaper me-2"></i>Articles</h4>
+        <div class="row g-3">
+            {% for a in articles %}
+            <div class="col-md-6">
+                <div class="card card-islamic">
+                    <div class="card-body">
+                        <h6 class="card-title">{{ a.title }}</h6>
+                        <p class="small text-muted">{{ a.summary[:120] }}...</p>
+                        <a href="{{ url_for('articles.detail', slug=a.slug) }}" class="btn btn-sm btn-gold">Read</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+
+    {% if kalmas %}
+    <section class="mb-5">
+        <h4 class="text-gold mb-3"><i class="bi bi-moon me-2"></i>Kalma</h4>
+        <div class="row g-3">
+            {% for k in kalmas %}
+            <div class="col-md-6">
+                <div class="card card-islamic">
+                    <div class="card-body">
+                        <h6 class="card-title">{{ k.title }}</h6>
+                        <a href="{{ url_for('kalma.index') }}" class="btn btn-sm btn-gold">Read</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+</div>
+{% endblock %}

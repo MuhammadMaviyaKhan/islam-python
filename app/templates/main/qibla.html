@@ -1,0 +1,24 @@
+{% extends "base.html" %}{% block title %}Qibla Direction - Shia Islam{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <h2 class="fw-bold mb-4"><i class="bi bi-compass text-gold me-2"></i>Qibla Direction</h2>
+    <div class="card card-islamic mb-4">
+        <div class="card-body">
+            <form class="row g-3" method="GET">
+                <div class="col-md-5"><label>Latitude</label><input class="form-control" name="lat" value="{{ lat }}"></div>
+                <div class="col-md-5"><label>Longitude</label><input class="form-control" name="lng" value="{{ lng }}"></div>
+                <div class="col-md-2 d-flex align-items-end"><button class="btn btn-gold w-100" type="submit">Find</button></div>
+            </form>
+        </div>
+    </div>
+    {% if direction is not none %}
+    <div class="card card-islamic text-center">
+        <div class="card-body py-5">
+            <i class="bi bi-compass display-1 text-gold"></i>
+            <h3 class="mt-3">Qibla Direction: {{ direction|round(1) }}°</h3>
+            <p class="text-muted">Degrees from True North</p>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

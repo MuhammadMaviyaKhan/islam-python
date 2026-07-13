@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}{{ prayer.name }} - Shia Islam{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ url_for('namaz.index') }}">Namaz</a></li>
+            <li class="breadcrumb-item active">{{ prayer.name }}</li>
+        </ol>
+    </nav>
+    <div class="card card-islamic">
+        <div class="card-body">
+            <h3 class="fw-bold mb-3">{{ prayer.name }}</h3>
+            {% if prayer.arabic %}<p class="arabic-text fs-4 mb-3" dir="rtl">{{ prayer.arabic }}</p>{% endif %}
+            {% if prayer.rakats %}<p><strong>Rakats:</strong> {{ prayer.rakats }}</p>{% endif %}
+            {% if prayer.purpose %}<p><strong>Purpose:</strong> {{ prayer.purpose }}</p>{% endif %}
+            {% if prayer.steps %}
+            <h5 class="text-gold mt-4 mb-3">Step-by-Step Guide</h5>
+            <div class="steps-content">{{ prayer.steps|replace('\n', '<br>')|safe }}</div>
+            {% endif %}
+            {% if prayer.tasbihat %}
+            <h5 class="text-gold mt-4 mb-3">Tasbihat</h5>
+            <p>{{ prayer.tasbihat }}</p>
+            {% endif %}
+            {% if prayer.tashahhud %}
+            <h5 class="text-gold mt-4 mb-3">Tashahhud</h5>
+            <p class="arabic-text" dir="rtl">{{ prayer.tashahhud }}</p>
+            {% endif %}
+            {% if prayer.salam %}
+            <h5 class="text-gold mt-4 mb-3">Salam</h5>
+            <p>{{ prayer.salam }}</p>
+            {% endif %}
+            {% if prayer.notes %}
+            <div class="alert alert-info mt-4">{{ prayer.notes }}</div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

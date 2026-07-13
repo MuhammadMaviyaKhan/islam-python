@@ -1,0 +1,35 @@
+{% extends "base.html" %}{% block title %}Profile - Shia Islam{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card card-islamic">
+                <div class="card-body p-4">
+                    <h3 class="fw-bold mb-4">Profile</h3>
+                    <form method="POST">
+                        <div class="mb-3">
+                            <label class="form-label">Username</label>
+                            <input class="form-control" name="username" value="{{ current_user.username }}">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input class="form-control" value="{{ current_user.email }}" disabled>
+                        </div>
+                        <button class="btn btn-gold" type="submit">Update</button>
+                    </form>
+                    <hr>
+                    <h5>Bookmarks</h5>
+                    {% for bm in current_user.bookmarks %}
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span>{{ bm.title }} ({{ bm.content_type }})</span>
+                        <small class="text-muted">{{ bm.created_at.strftime('%b %d') }}</small>
+                    </div>
+                    {% else %}
+                    <p class="text-muted">No bookmarks yet.</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

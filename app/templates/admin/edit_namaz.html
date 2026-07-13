@@ -1,0 +1,23 @@
+{% extends "base.html" %}{% block title %}Edit Namaz Guide{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <h4>Edit: {{ prayer.name }}</h4>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        {{ form.name.label }}{{ form.name(class="form-control mb-2") }}
+        {{ form.slug.label }}{{ form.slug(class="form-control mb-2") }}
+        {{ form.prayer_type.label }}{{ form.prayer_type(class="form-control mb-2") }}
+        {{ form.rakats.label }}{{ form.rakats(class="form-control mb-2") }}
+        {{ form.purpose.label }}{{ form.purpose(class="form-control mb-2", rows=3) }}
+        {{ form.steps.label }}{{ form.steps(class="form-control mb-2", rows=10) }}
+        {{ form.tasbihat.label }}{{ form.tasbihat(class="form-control mb-2", rows=3) }}
+        {{ form.tashahhud.label }}{{ form.tashahhud(class="form-control mb-2", rows=3) }}
+        {{ form.salam.label }}{{ form.salam(class="form-control mb-2", rows=3) }}
+        {{ form.arabic.label }}{{ form.arabic(class="form-control mb-2", rows=3) }}
+        {{ form.notes.label }}{{ form.notes(class="form-control mb-2", rows=3) }}
+        {{ form.sort_order.label }}{{ form.sort_order(class="form-control mb-2") }}
+        <div class="form-check mb-3">{{ form.is_published(class="form-check-input") }}{{ form.is_published.label }}</div>
+        {{ form.submit(class="btn btn-gold") }}
+    </form>
+</div>
+{% endblock %}

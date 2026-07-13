@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}{{ ziyarat.title }} - Shia Islam{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ url_for('ziyarat.index') }}">Ziyarat</a></li>
+            <li class="breadcrumb-item active">{{ ziyarat.title }}</li>
+        </ol>
+    </nav>
+    <div class="card card-islamic">
+        <div class="card-body">
+            <h3 class="fw-bold mb-3">{{ ziyarat.title }}</h3>
+            <div class="text-center mb-4 p-4 bg-arabic">
+                <p class="arabic-text fs-4 mb-0" dir="rtl">{{ ziyarat.arabic }}</p>
+            </div>
+            {% if ziyarat.transliteration %}
+            <div class="mb-4 p-3 bg-light rounded">
+                <h6 class="text-gold">Transliteration</h6>
+                <p class="mb-0 fst-italic">{{ ziyarat.transliteration }}</p>
+            </div>
+            {% endif %}
+            {% if ziyarat.urdu %}
+            <div class="mb-4"><h6 class="text-gold">Urdu</h6><p class="urdu-text" dir="rtl">{{ ziyarat.urdu }}</p></div>
+            {% endif %}
+            {% if ziyarat.english %}
+            <div class="mb-4"><h6 class="text-gold">English</h6><p>{{ ziyarat.english }}</p></div>
+            {% endif %}
+            {% if ziyarat.reference %}
+            <div class="alert alert-gold"><strong>Reference:</strong> {{ ziyarat.reference }}</div>
+            {% endif %}
+            {% if ziyarat.audio_file %}
+            <audio controls class="w-100"><source src="{{ url_for('static', filename='audio/' + ziyarat.audio_file) }}" type="audio/mpeg"></audio>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

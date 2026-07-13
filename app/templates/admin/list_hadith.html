@@ -1,0 +1,13 @@
+{% extends "base.html" %}{% block title %}Hadith{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <h4>Hadith Collection</h4>
+    <table class="table table-striped">
+        <thead><tr><th>English</th><th>Source</th><th>Featured</th></tr></thead>
+        <tbody>{% for h in hadiths %}<tr>
+            <td>{{ h.english[:80] }}...</td><td>{{ h.source }}</td>
+            <td>{% if h.is_featured %}<i class="bi bi-star-fill text-gold"></i>{% endif %}</td>
+        </tr>{% endfor %}</tbody>
+    </table>
+</div>
+{% endblock %}

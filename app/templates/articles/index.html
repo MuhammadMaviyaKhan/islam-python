@@ -1,0 +1,24 @@
+{% extends "base.html" %}{% block title %}Articles - Shia Islam{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <h2 class="fw-bold mb-4"><i class="bi bi-newspaper text-gold me-2"></i>Islamic Articles</h2>
+    <div class="row g-4">
+        {% for article in articles %}
+        <div class="col-md-6">
+            <div class="card card-islamic h-100">
+                <div class="card-body">
+                    <h5 class="card-title">{{ article.title }}</h5>
+                    {% if article.summary %}<p class="card-text text-muted">{{ article.summary[:200] }}...</p>{% endif %}
+                    <div class="d-flex justify-content-between align-items-center">
+                        <small class="text-muted">{{ article.created_at.strftime('%b %d, %Y') }}</small>
+                        <a href="{{ url_for('articles.detail', slug=article.slug) }}" class="btn btn-sm btn-gold">Read</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="col-12"><div class="alert alert-info">No articles yet.</div></div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

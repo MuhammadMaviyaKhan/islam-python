@@ -1,0 +1,26 @@
+{% extends "base.html" %}{% block title %}{{ 'Edit' if editing else 'New' }} Dua{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <h2 class="fw-bold mb-4">{{ 'Edit' if editing else 'New' }} Dua</h2>
+    <form method="POST" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <div class="row">
+            <div class="col-md-6 mb-3">{{ form.title.label }}{{ form.title(class="form-control") }}</div>
+            <div class="col-md-6 mb-3">{{ form.slug.label }}{{ form.slug(class="form-control") }}</div>
+        </div>
+        <div class="mb-3">{{ form.category_id.label }}{{ form.category_id(class="form-select") }}</div>
+        <div class="mb-3">{{ form.arabic.label }}{{ form.arabic(class="form-control", rows=5) }}</div>
+        <div class="mb-3">{{ form.urdu.label }}{{ form.urdu(class="form-control", rows=3) }}</div>
+        <div class="mb-3">{{ form.english.label }}{{ form.english(class="form-control", rows=3) }}</div>
+        <div class="mb-3">{{ form.transliteration.label }}{{ form.transliteration(class="form-control", rows=3) }}</div>
+        <div class="mb-3">{{ form.reference.label }}{{ form.reference(class="form-control", rows=2) }}</div>
+        <div class="row">
+            <div class="col-md-6 mb-3">{{ form.audio_file.label }}{{ form.audio_file(class="form-control") }}</div>
+            <div class="col-md-6 mb-3">{{ form.pdf_file.label }}{{ form.pdf_file(class="form-control") }}</div>
+        </div>
+        <div class="mb-3 form-check">{{ form.is_published(class="form-check-input") }}{{ form.is_published.label }}</div>
+        {{ form.submit(class="btn btn-gold") }}
+        <a href="{{ url_for('admin.list_duas') }}" class="btn btn-outline-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

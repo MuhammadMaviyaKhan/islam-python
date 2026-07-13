@@ -1,0 +1,14 @@
+{% extends "base.html" %}{% block title %}Users{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <h4>Users</h4>
+    <table class="table table-striped">
+        <thead><tr><th>ID</th><th>Username</th><th>Email</th><th>Admin</th><th>Joined</th></tr></thead>
+        <tbody>{% for u in users %}<tr>
+            <td>{{ u.id }}</td><td>{{ u.username }}</td><td>{{ u.email }}</td>
+            <td>{% if u.is_admin %}<span class="badge bg-gold">Admin</span>{% endif %}</td>
+            <td>{{ u.created_at.strftime('%Y-%m-%d') }}</td>
+        </tr>{% endfor %}</tbody>
+    </table>
+</div>
+{% endblock %}
